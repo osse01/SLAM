@@ -8,9 +8,10 @@ Implemented with **Armijo line search** and dynamic damping.
 - **Tests**: Rosenbrock (2D) and Powell (4D) functions (see [optimization/README.md](optimization/README.md)).  
 
 ### **Upcoming Modules**  
-1. Particle filter for estimating landmarks
-2. (E)KF using standard Motion Models
-3. SLAM which includes both
+1. Particle Filter (PF) for estimating landmarks
+2. Extended Kalman Filter (EKF) using standard Motion Models
+3. Combine them to a Marginalized Particle Filter (MPF)
+4. SLAM
 
 ---
 
