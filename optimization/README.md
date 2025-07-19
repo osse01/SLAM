@@ -13,6 +13,8 @@ sudo apt install libeigen3-dev
 ## Benchmark tests
 Rosenbrock and Powell function where tested to verify the implementation.
 
+---
+
 ### Rosenbrock's Function in 2D
 The Rosenbrock function is
 
@@ -28,6 +30,7 @@ Using start position $x^{0} = (-1.5, 2.0)^T$, we get
 | ...  | ...      | ...      | ...       |
 | 21   |  1.000   |  1.000   | 0.000e+00 |
 
+---
 
 ### Powell's Function in 4D
 
