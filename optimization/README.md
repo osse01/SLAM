@@ -35,11 +35,11 @@ The Powell function is
 
 $r_0 = x_0 + 10x_1$
 
-$r_1 = \sqrt{5}\;(x_2 - x_3)$
+$r_1 = \sqrt{5} (x_2 - x_3)$
 
 $r_2 = (x_1 - 2x_2)^2$
 
-$r_3 = \sqrt{10}(x_0 - x_3)^2$
+$r_3 = \sqrt{10} (x_0 - x_3)^2$
 
 Using start position $x^{0} = (-2.5, 3.7, -4.1, 1.8)^T$, we get
 ![Convergence Rosenbrock](images/benchmark_powell.jpg)
