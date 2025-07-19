@@ -22,7 +22,7 @@ $r_1(x) = 1 - x_1$
 
 Using start position $x^{0} = (-1.5, 2.0)^T$, we get
 ![Convergence Rosenbrock](images/benchmark_rosenbrock.jpg)
-| Iter | x_1       | x_2       | Cost      |
+| Iter | $x_1$       | $x_2$       | Cost      |
 |------|----------|----------|-----------|
 | 1    | -1.376   |  1.883   | 5.653e+00 |
 | ...  | ...      | ...      | ...       |
@@ -43,7 +43,7 @@ $r_3(x) = \sqrt{10} (x_1 - x_4)^2$
 
 Using start position $x^{0} = (-2.5, 3.7, -4.1, 1.8)^T$, we get
 ![Convergence Rosenbrock](images/benchmark_powell.jpg)
-|Iter| x_1      | x_2    | x_3      | x_4      | Cost     |
+|Iter| $x_1$      | $x_2$    | $x_3$      | $x_4$      | Cost     |
 |----|---------|-------|---------|---------|----------|
 |1   |-2.705   |0.454  |-2.746   |-0.554   |1.49e+03  |
 |... |...      |...    |...      |...      |...       |
