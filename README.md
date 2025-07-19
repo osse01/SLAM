@@ -17,9 +17,10 @@ Implemented with **Armijo line search** and dynamic damping.
 
 ## **Installation**  
 ### **Eigen (Required)**  
+
 ```bash
 sudo apt update && sudo apt install libeigen3-dev
-```  
+```
 
 ---
 
@@ -32,7 +33,6 @@ My vision is that these implementation will match what is on the market.
 - **Zero dependencies** beyond Eigen and STL.  
 - **Header-only** where possible (e.g., `include/slam/optimization.hpp`).  
 - **Benchmark-driven**: Each module includes tests like Rosenbrock/Powell.  
-```  
 
 ---
 
