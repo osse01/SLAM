@@ -20,7 +20,7 @@ $$
 \end{cases}
 $$
 Using start position $x = (-1.5, 2.0)^T$ we get
-![Convergence Rosenbrock](images/benchmark_rosenbrock.png)
+![Convergence Rosenbrock](images/benchmark_rosenbrock.jpg)
 | Iter | x₀       | x₁       | Cost      |
 |------|----------|----------|-----------|
 | 1    | -1.376   |  1.883   | 5.653e+00 |
@@ -37,7 +37,7 @@ $$
     r_3 = \sqrt{10}(x_0 - x_3)^2 
 \end{cases}
 $$
-![Convergence Rosenbrock](images/benchmark_powell.png)
+![Convergence Rosenbrock](images/benchmark_powell.jpg)
 |Iter| x₀      | x₁    | x₂      | x₃      | Cost     |
 |----|---------|-------|---------|---------|----------|
 |1   |-2.705   |0.454  |-2.746   |-0.554   |1.49e+03  |
