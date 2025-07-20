@@ -1,5 +1,7 @@
 #include "../include/particle_filter.h"
+#include "../include/extended_kalman_filter.h"
 #include <iostream>
+#include <fstream>
 
 // Example sensor model function for the particle filter
 const Eigen::VectorXd sensor_model(const Eigen::VectorXd& particle) {
@@ -42,6 +44,27 @@ int main() {
                   << ", x2 = " << best_particles[i][1]
                   << ", v1 = " << best_particles[i][2]
                   << ", v2 = " << best_particles[i][3] << std::endl;
+    }
+    // Compare to EKF:
+    std::ofstream log_file("ekf.dat");
+    State state{initial_particle, Eigen::MatrixXd::Identity(4, 4)};
+    Eigen::MatrixXd Q = Eigen::MatrixXd::Identity(4, 4) * 0.1; // Process noise covariance
+    Eigen::MatrixXd R = Eigen::MatrixXd::Identity(2, 2) * 0.1; // Measurement noise covariance
+
+    // Run the Extended Kalman Filter for each measurement
+    std::cout << "Extended Kalman Filter Results:" << std::endl;
+    for (size_t i = 0; i < measurements.size(); ++i) {
+        State best_ekf = extended_kalman_filter(state, measurements[i], motion_model, sensor_model, Q, R);
+        std::cout << "Best EKF State at step " << i 
+                  << ": x1 = " << best_ekf.state[0]
+                  << ", x2 = " << best_ekf.state[1]
+                  << ", v1 = " << best_ekf.state[2]
+                  << ", v2 = " << best_ekf.state[3] << std::endl;
+        std::cout << "With a covariance of:\n" << best_ekf.covariance << std::endl;
+        state.state = best_ekf.state; // Update state for next iteration
+        state.covariance = best_ekf.covariance; // Update covariance for next iteration
+        log_file << state.state[0] << " " << state.state[1] << std::endl;
+
     }
     system("gnuplot -p plot.plt"); // Plot the results using gnuplot
 

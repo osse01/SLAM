@@ -2,7 +2,7 @@
 CXX := g++
 CXXFLAGS :=  -std=c++20 -g -pedantic -Wall -Wextra  -Wshadow -Wconversion -Wunreachable-code #-fsanitize=address  # -Werror
 LDFLAGS := -I/usr/include/eigen3
-TARGET := my_eigen_program
+TARGET := my_eigen_program.out
 
 # Auto-detect all .cpp files in the current directory
 SRCS := $(wildcard src/*.cpp)
