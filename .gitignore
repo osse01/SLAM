@@ -39,3 +39,8 @@
 
 # debug information files
 *.dwo
+=======
+**.o
+**.dat
+*.vscode
+>>>>>>> f8aa8f2907d2e6e6cbf702f1cc6129f50c01d6aa
