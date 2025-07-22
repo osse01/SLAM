@@ -6,7 +6,7 @@ I use finite difference to approximate the jacobians. This could be done analyti
 The central difference approach seems too work great though. 
 
 The estimated positions of an RC-Car, together with the microphones and the true trajectory.
-![Extended Kalman Filter results](!images/EKF.png)
+![Extended Kalman Filter results](images/EKF.png)
 
 ## Particle Filter
 Populated the area with particles and resample based on the likelihood of the particle given the data. 
