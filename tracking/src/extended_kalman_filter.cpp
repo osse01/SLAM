@@ -3,7 +3,7 @@
 
 
 Eigen::MatrixXd finiteDiff(const Eigen::VectorXd& state, const std::function<Eigen::VectorXd(const Eigen::VectorXd&)>& model) {
-    Eigen::VectorXd fx = model(state);
+    const Eigen::VectorXd fx = model(state);
     Eigen::MatrixXd J(fx.size(), state.size());
     const double eps = 1e-3;
     for (int i = 0; i < state.size(); ++i) {
