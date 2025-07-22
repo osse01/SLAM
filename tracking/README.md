@@ -5,6 +5,9 @@ Basically the same as the oridnary Kalman filter but linearizes around the curre
 I use finite difference to approximate the jacobians. This could be done analytically aswell but I was lazy. 
 The central difference approach seems too work great though. 
 
+The estimated positions of an RC-Car, together with the microphones and the true trajectory.
+![Extended Kalman Filter results](!images/EKF.png)
+
 ## Particle Filter
 Populated the area with particles and resample based on the likelihood of the particle given the data. 
 Doing this iteratively, only the most probable particles will stay. 
@@ -15,6 +18,3 @@ One candidate of the __best__ estimate is the linear combination of the particle
 Microphones where placed around in a room and a RC-Car beeped at around 2 Hz. 
 <img width="1284" height="963" alt="image" src="https://github.com/user-attachments/assets/022c6ae2-1c0b-4fbc-a6b0-2efc7e6f9c5e" />
 The data was collected from the microphones to create delta times to estimate the position of the RC-Car.
-
-The estimated positions:
-![images/EKF.png]
