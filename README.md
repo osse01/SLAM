@@ -5,13 +5,18 @@ My implementation of Simultaneous Localization and Mapping (SLAM) using **Eigen*
 ### **Levenberg-Marquardt Optimizer**  
 Implemented with **Armijo line search** and dynamic damping.  
 - **Location**: `optimization/LevenbergMarquardt`  
-- **Tests**: Rosenbrock (2D) and Powell (4D) functions (see [optimization/README.md](optimization/README.md)).  
+- **Tests**: Rosenbrock (2D) and Powell (4D) functions (see [optimization/README.md](optimization/README.md)).
+
+### **Particle Filter (PF)**
+A basic PF to estimate the pose of a state. [See the README in tracking](tracking/README.md)
+
+### **Extended Kalman Filter**
+A basic PF to estimate the pose of a state. [See the README in tracking](tracking/README.md)
 
 ### **Upcoming Modules**  
-1. Particle Filter (PF) for estimating landmarks
-2. Extended Kalman Filter (EKF) using standard Motion Models
-3. Combine them to a Marginalized Particle Filter (MPF)
-4. SLAM
+1. Combine the filters to a Marginalized Particle Filter (MPF)
+2. Change the function to handle sparse matrices (For SLAM)
+3. Implement SLAM
 
 ---
 
