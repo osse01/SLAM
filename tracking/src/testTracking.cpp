@@ -311,7 +311,7 @@ int main() {
     std::cout << "Starting EKF with " << converted_measurements.size() << " measurements." << std::endl;
     for (int i = 0; i < converted_measurements.size(); ++i) {
         stateEKF = extended_kalman_filter(stateEKF, converted_measurements[i], motion_model, sensor_model, process_noise, cov_sys);
-        statePF = particle_filter(statePF, converted_measurements[i], motion_model, sensor_model, cov_sys, 5000, 10, 0.5);
+        //statePF = particle_filter(statePF, converted_measurements[i], motion_model, sensor_model, cov_sys, 5000, 10, 0.5);
         
         // Log the state for gnuplot
         log_fileEKF << stateEKF.state[0] << " " << stateEKF.state[1] << std::endl;

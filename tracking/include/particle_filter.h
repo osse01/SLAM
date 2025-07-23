@@ -1,10 +1,11 @@
 #ifndef PARTICLE_FILTER_H
 #define PARTICLE_FILTER_H
 
-#include <vector>
-#include <random>
-#include <algorithm>
 #include <Eigen/Dense>
+#include <algorithm>  // For std::fill
+#include <random>     // For random number generators
+#include <vector>     // For std::vector (if not in your header)
+#include <functional>
 
 
 

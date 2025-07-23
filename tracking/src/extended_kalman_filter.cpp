@@ -1,5 +1,4 @@
 #include "../include/extended_kalman_filter.h"
-#include <iostream>
 
 
 Eigen::MatrixXd finiteDiff(const Eigen::VectorXd& state, const std::function<Eigen::VectorXd(const Eigen::VectorXd&)>& model) {
@@ -35,12 +34,15 @@ State extended_kalman_filter(
     Eigen::MatrixXd K = P * H.transpose() * 
         S.llt().solve(Eigen::MatrixXd::Identity(S.rows(), S.cols())); // K = P * H^T * S^-1
 
-    Eigen::VectorXd error = measurements - sensor_model(x);
+    Eigen::VectorXd error = measurements - sensor_model(x); // y - h(x)
 
+    // Time update (prediction step)
     x += K * error;
     P -= K * H * P;
 
+    // Measurement update (correction step)
     x = motion_model(x);
     P = finiteDiff(x, motion_model) * P * finiteDiff(x, motion_model).transpose() + process_noise_covariance;
+
     return State{x, P};
 }

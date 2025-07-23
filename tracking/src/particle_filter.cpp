@@ -1,8 +1,5 @@
 #include "../include/particle_filter.h"
 
-#include <iostream>
-#include <fstream>
-
 Eigen::VectorXd particle_filter(Eigen::VectorXd initial_particle,
                                 const Eigen::VectorXd& measurement,
                                 const std::function<Eigen::VectorXd(const Eigen::VectorXd&)> motion_model,
