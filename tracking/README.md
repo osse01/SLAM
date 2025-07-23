@@ -19,4 +19,4 @@ The estimated positions of an RC-Car using PF, together with the microphones and
 
 ## Data
 Microphones where placed around in a room and a RC-Car beeped at around 2 Hz. The data was collected from the microphones to create delta times to estimate the position of the RC-Car.
-<img width="500" height=auto alt="image" scale=0.5 src="https://github.com/user-attachments/assets/022c6ae2-1c0b-4fbc-a6b0-2efc7e6f9c5e" />
+<img width="500" height=auto alt="image" src="https://github.com/user-attachments/assets/022c6ae2-1c0b-4fbc-a6b0-2efc7e6f9c5e" />
