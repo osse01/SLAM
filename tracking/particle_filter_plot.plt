@@ -5,4 +5,4 @@ set key auto
 set grid
 plot "../data/mic_locations.txt" using 1:2 with points pt 9 ps 3 lc rgb "red" title "Microphones", \
      "../data/position_formatted.dat" with linespoints lw 0.1 pt 7 ps 0.5 lc rgb "red" title "True Trajectory", \
-     "ekf_real.dat" with linespoints lw 2 pt 7 ps 0.5 title "EKF Trajectory"
+     "particle_filter.dat" with linespoints lw 2 pt 7 ps 0.5 title "Particle Filter Trajectory"

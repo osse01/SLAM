@@ -22,10 +22,11 @@
 
  * @return The likeliest particles after processing the measurements
 */
-std::vector<Eigen::VectorXd> particle_filter(Eigen::VectorXd initial_particle,
-                                const std::vector<Eigen::VectorXd>& measurements,
+Eigen::VectorXd particle_filter(Eigen::VectorXd initial_particle,
+                                const Eigen::VectorXd& measurement,
                                 const std::function<Eigen::VectorXd(const Eigen::VectorXd&)> motion_model,
                                 const std::function<Eigen::VectorXd(const Eigen::VectorXd&)> sensor_model,
+                                const Eigen::MatrixXd& cov_sys,
                                 int num_particles = 1000,
                                 int num_iterations = 10,
                                 double resample_threshold = 0.5);

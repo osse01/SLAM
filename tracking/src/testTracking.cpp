@@ -9,6 +9,7 @@
 #include <cmath>
 
 #include "../include/extended_kalman_filter.h"
+#include "../include/particle_filter.h"
 
 
 const std::vector<Eigen::Vector2d> get_sensor_positions() {
@@ -299,21 +300,28 @@ int main() {
     process_noise(3,3) = 1e-6;  // Velocity noise in y
 
 
-    std::ofstream log_file("ekf_real.dat"); // For plotting
+    std::ofstream log_fileEKF("ekf_real.dat"); // For plotting
+    std::ofstream log_filePF("particle_filter.dat");
     Eigen::Vector4d initial_state; 
     initial_state << 0, 0, 0, 0; // Initial state: [x, y, vx, vy]
-    State state {initial_state, Eigen::Matrix4d::Identity()}; // Initial covariance matrix
+    State stateEKF {initial_state, Eigen::Matrix4d::Identity()};
+    Eigen::VectorXd statePF = initial_state;
 
     // Main loop for EKF
     std::cout << "Starting EKF with " << converted_measurements.size() << " measurements." << std::endl;
     for (int i = 0; i < converted_measurements.size(); ++i) {
-        state = extended_kalman_filter(state, converted_measurements[i], motion_model, sensor_model, process_noise, cov_sys);
-
+        stateEKF = extended_kalman_filter(stateEKF, converted_measurements[i], motion_model, sensor_model, process_noise, cov_sys);
+        statePF = particle_filter(statePF, converted_measurements[i], motion_model, sensor_model, cov_sys, 5000, 10, 0.5);
+        
         // Log the state for gnuplot
-        log_file << state.state[0] << " " << state.state[1] << std::endl;
+        log_fileEKF << stateEKF.state[0] << " " << stateEKF.state[1] << std::endl;
+        log_filePF << statePF[0] << " " << statePF[1] << std::endl;
     }
 
-    log_file.close();
+    log_fileEKF.close();
+    log_filePF.close();
+
     system("gnuplot -p ekf_real_plot.plt");
+    system("gnuplot -p particle_filter_plot.plt");
     return 0;
 }
