@@ -1,5 +1,7 @@
 # **SLAM from Scratch in C++**  
-My implementation of Simultaneous Localization and Mapping (SLAM) using **Eigen** and **C++ STL only**.  
+My implementation of Simultaneous Localization and Mapping (SLAM) using **Eigen** and **C++ STL only**.
+
+My vision is to implement something similar to wha is described in this paper [FastSLAM](https://robots.stanford.edu/papers/montemerlo.fastslam-tr.pdf). It can also be read in Statistical Sensor Fusion by Fredrik Gustafsson.
 
 ## **Current Progress**  
 ### **Levenberg-Marquardt Optimizer**  
