@@ -39,8 +39,9 @@
 
 # debug information files
 *.dwo
-=======
-**.o
-**.dat
+
+# Misc
+*.dat
+*.data
 *.vscode
->>>>>>> f8aa8f2907d2e6e6cbf702f1cc6129f50c01d6aa
+output.png

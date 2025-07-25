@@ -13,17 +13,29 @@ Eigen::VectorXd particle_filter(Eigen::VectorXd initial_particle,
     std::vector<Eigen::VectorXd> particles(num_particles, initial_particle);
     std::default_random_engine gen;
     std::vector<double> weights(num_particles, 1.0 / num_particles);
-
+    
+    int state_dim = initial_particle.size();
     Eigen::MatrixXd cov_inv = cov_sys.inverse();
 
+    // Calculate noise scale from measurement covariance
+    double measurement_uncertainty = std::sqrt(cov_sys.trace() / cov_sys.rows());
+    double pos_noise_std = measurement_uncertainty * 10;
+    double vel_noise_std = measurement_uncertainty;
+    
+    std::normal_distribution<> pos_noise(0.0, pos_noise_std);
+    std::normal_distribution<> vel_noise(0.0, vel_noise_std);
 
     // Add noise to initial particles
-    std::normal_distribution<> noise(0.0, 0.1);
     for (auto& particle : particles) {
-        particle[0] += noise(gen);
-        particle[1] += noise(gen);
-        particle[2] += noise(gen) * 0.1;
-        particle[3] += noise(gen) * 0.1;
+        for (int i = 0; i < state_dim; ++i) {
+            if (i < state_dim / 2) {
+                // Assume first half are position states
+                particle[i] += pos_noise(gen);
+            } else {
+                // Assume second half are velocity/derivative states
+                particle[i] += vel_noise(gen);
+            }
+        }
     }
 
     for (int iter = 0; iter < num_iterations; ++iter) {
@@ -42,6 +54,7 @@ Eigen::VectorXd particle_filter(Eigen::VectorXd initial_particle,
             total_weight += weights[idx];
         }
 
+        // If total weight is zero, reset weights to uniform distribution
         if (total_weight < 1e-10) {
             std::fill(weights.begin(), weights.end(), 1.0 / num_particles);
             total_weight = 1.0;
@@ -71,14 +84,19 @@ Eigen::VectorXd particle_filter(Eigen::VectorXd initial_particle,
         }
 
         // Motion update step with noise
-        std::normal_distribution<> motion_noise(0.0, 2.0); 
         for (size_t idx = 0; idx < particles.size(); ++idx) {
             particles[idx] = motion_model(particles[idx]);
-            // Add process noise
-            particles[idx][0] += motion_noise(gen);
-            particles[idx][1] += motion_noise(gen);
-            particles[idx][2] += motion_noise(gen) * 0.1;
-            particles[idx][3] += motion_noise(gen) * 0.1;
+            
+            // Add process noise - general for any dimension
+            for (int i = 0; i < state_dim; ++i) {
+                if (i < state_dim / 2) {
+                    // Position states get larger noise
+                    particles[idx][i] += pos_noise(gen);
+                } else {
+                    // Velocity/derivative states get smaller noise
+                    particles[idx][i] += vel_noise(gen);
+                }
+            }
         }
     }
 

@@ -195,17 +195,7 @@ std::vector<Eigen::VectorXd> outlier_detection(const std::vector<Eigen::VectorXd
     return filtered_measurements;
 }
 
- Eigen::MatrixXd regularize_covariance(const Eigen::MatrixXd& cov, double min_eigenvalue = 1e-6) {
-        Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> solver(cov);
-        Eigen::VectorXd eigenvalues = solver.eigenvalues();
-        
-        // Ensure minimum eigenvalue
-        for (int i = 0; i < eigenvalues.size(); ++i) {
-            eigenvalues[i] = std::max(eigenvalues[i], min_eigenvalue);
-        }
-        
-        return solver.eigenvectors() * eigenvalues.asDiagonal() * solver.eigenvectors().transpose();
-    }
+
 
 // Update sensor model to return 3 TDOA distance differences
 const Eigen::VectorXd sensor_model(const Eigen::VectorXd& particle) {
@@ -311,7 +301,7 @@ int main() {
     std::cout << "Starting EKF with " << converted_measurements.size() << " measurements." << std::endl;
     for (int i = 0; i < converted_measurements.size(); ++i) {
         stateEKF = extended_kalman_filter(stateEKF, converted_measurements[i], motion_model, sensor_model, process_noise, cov_sys);
-        //statePF = particle_filter(statePF, converted_measurements[i], motion_model, sensor_model, cov_sys, 5000, 10, 0.5);
+        statePF = particle_filter(statePF, converted_measurements[i], motion_model, sensor_model, cov_sys, 500, 5, 0.5);
         
         // Log the state for gnuplot
         log_fileEKF << stateEKF.state[0] << " " << stateEKF.state[1] << std::endl;
@@ -321,7 +311,7 @@ int main() {
     log_fileEKF.close();
     log_filePF.close();
 
-    system("gnuplot -p ekf_real_plot.plt");
-    system("gnuplot -p particle_filter_plot.plt");
+    system("gnuplot ekf_real_plot.plt");
+    system("gnuplot particle_filter_plot.plt");
     return 0;
 }
